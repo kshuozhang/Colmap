@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Head Studio — Photos to 3D</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header><a class="brand" href="/">◈ <span>Head Studio</span></a><span class="local"><i></i> Runs privately on your Mac</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">YOUR PHOTOS. EVERY ANGLE.</p><h1>A head, in three dimensions.</h1><p>Turn a circle of phone photos into a textured 3D model.<br>Capture carefully. Reconstruct locally. Explore every side.</p></section>
+    <div id="notice" role="alert" hidden></div>
+    <div class="workspace">
+      <section class="panel setup">
+        <div class="section-title"><span class="number">01</span><h2>Create a reconstruction</h2></div>
+        <label for="name">Project name</label><input id="name" type="text" value="My head scan" maxlength="100">
+        <label>Phone photos <span class="muted">12–200 images</span></label>
+        <label id="drop" class="drop" for="photos"><span class="upload-icon">＋</span><strong>Choose photos or drop them here</strong><span>JPEG, HEIC, PNG, TIFF, or WebP</span><input id="photos" type="file" accept=".jpg,.jpeg,.png,.heic,.heif,.tif,.tiff,.webp" multiple></label>
+        <div id="selection" class="selection">No photos selected</div><div id="thumbs"></div>
+        <label for="quality">Processing quality</label><select id="quality"><option value="balanced">Balanced · recommended for 16 GB</option><option value="draft">Draft · faster first pass</option></select>
+        <p class="hint">Balanced uses photos up to 2400 px and 4 CPU threads. Keep your Mac plugged in and awake; processing can take a long time.</p>
+        <button id="build" class="primary" disabled>Create 3D model <span>↗</span></button>
+        <p id="tools" class="tool-status">Checking reconstruction tools…</p>
+      </section>
+      <section class="panel preview-panel">
+        <div class="section-title"><span class="number">02</span><h2>Your model</h2><span id="badge" class="badge">Ready when you are</span></div>
+        <div id="viewer"><div id="empty"><div class="head-outline">◉</div><h3>A new perspective awaits.</h3><p>Your reconstruction will appear here.<br>Drag to rotate. Scroll to explore.</p></div></div>
+        <div class="viewer-controls"><button id="reset-view" disabled>Reset view</button><button id="rotate-model" disabled>Turn upright ↻</button><a id="download" class="button primary" hidden>Download model ZIP ↓</a></div>
+        <p class="hint">Includes OBJ, material, and texture files. Inspect the full model before use; background or shoulders may need cropping in Blender or MeshLab.</p>
+      </section>
+    </div>
+    <section id="progress-panel" class="panel" hidden>
+      <div class="section-title"><span class="number">03</span><h2 id="project-title">Processing</h2><button id="cancel">Cancel processing</button></div>
+      <p id="message" aria-live="polite"></p><progress id="progress" max="10" value="0"></progress><p id="progress-note" class="hint">Progress shows completed stages, not remaining time.</p>
+      <div id="stages"></div><p id="warnings" class="hint"></p><p id="output" class="hint"></p>
+      <details><summary>Processing log</summary><pre id="log"></pre></details>
+    </section>
+    <section class="guide"><div><p class="eyebrow">A BETTER CAPTURE</p><h2>Good photos make the model.</h2></div><ol><li><strong>Move the camera, keep the head still.</strong><span>Use a neutral expression. Have someone walk around you, with the head filling most of each photo.</span></li><li><strong>Cover every side.</strong><span>Aim for 80–150 overlapping photos at eye level, above, and below. Include ears, crown, back, and under the chin.</span></li><li><strong>Keep things consistent.</strong><span>Use one lens, soft lighting, no portrait blur or beauty filters. Hair and facial movement can create gaps.</span></li></ol></section>
+    <section class="panel history"><h2>Projects on this Mac</h2><div id="history">No projects yet.</div></section>
+    <footer>Head Studio <span>Powered by COLMAP + OpenMVS · Photos stay in this project folder</span></footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body></html>

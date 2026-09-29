@@ -1,0 +1,8 @@
+.venv/
+.colmap-env/
+tools/openmvs/
+projects/
+__pycache__/
+*.log
+.DS_Store
+.test-data/
